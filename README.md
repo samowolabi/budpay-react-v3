@@ -14,6 +14,7 @@ To install the BudPay React Library, use npm or yarn:
 
 ```bash
 npm install budpay-react-v3
+```
 
 
 ### 1. `BudPayButton`
