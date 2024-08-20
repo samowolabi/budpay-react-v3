@@ -17,6 +17,16 @@ export interface BudPayPaymentConfig {
 }
 
 
+export interface BudPayAccessCodeConfig {
+    access_code: string;
+    reference: string;
+    callback_url?: string;
+    onComplete?: (response: { reference: string, status: 'success' | 'failed' | 'canceled' }) => void;
+    onCancel?: (response: { reference: string, status: 'canceled' }) => void;
+    debug?: boolean;
+}
+
+
 export interface BudPayPaymentAPIConfig {
     status: boolean
     type: 'merchant_integration';

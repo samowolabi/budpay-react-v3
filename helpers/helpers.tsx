@@ -1,3 +1,5 @@
+import { BudPayPaymentConfig, BudPayAccessCodeConfig } from "../types/types";
+
 // Create SVG Loader Function
 export const openSVGLoaderFunc = () => {
     let svgLoaderDiv = document.createElement("div");
@@ -62,4 +64,59 @@ export const appendQueryParams = (url: string, reference: string, status: string
     urlObject.searchParams.append('reference', reference);
     urlObject.searchParams.append('status', status);
     return urlObject.href;
+}
+
+
+// Close Payment Modal (Success or Failed)
+export const closePaymentModal = (selector: string, data: any, config: BudPayPaymentConfig | BudPayAccessCodeConfig) => {
+    const iFrameContainer = document.querySelector(selector);
+
+    if (iFrameContainer) {
+        iFrameContainer.remove();
+    }
+
+    // Check if callback_url is set in config
+    if (config.hasOwnProperty('callback_url') && config.callback_url) {
+        let callbackURL = config.callback_url;
+        window.location.href = appendQueryParams(callbackURL, data.reference, data.status);
+    } else {
+        // Check if callback_url is set in data
+        if (data.callback_url && data.callback_url !== null && data.callback_url !== 'null') {
+            window.location.href = data.callback_url;
+        } else {
+            config.hasOwnProperty('onComplete') && config.onComplete && config.onComplete({
+                reference: data.reference,
+                status: data.status
+            });
+        }
+    }
+}
+
+
+// Cancel Payment Modal
+export const cancelPaymentModal = (selector: string, data: any, config: BudPayPaymentConfig | BudPayAccessCodeConfig) => {
+    const iFrameContainer = document.querySelector(selector);
+
+    if (iFrameContainer) {
+        iFrameContainer.remove();
+    }
+
+    // Check if callback_url is set in config
+    if (config.hasOwnProperty('callback_url') && config.callback_url) {
+        let callbackURL = config.callback_url;
+
+        if (window) {
+            window.location.href = appendQueryParams(callbackURL, data.reference, data.status);
+        }
+    } else {
+        // Check if callback_url is set in data
+        if (data.callback_url && data.callback_url !== null && data.callback_url !== 'null') {
+            window.location.href = data.callback_url;
+        } else {
+            config.hasOwnProperty('onCancel') && config.onCancel && config.onCancel({
+                reference: data.reference,
+                status: data.status
+            });
+        }
+    }
 }

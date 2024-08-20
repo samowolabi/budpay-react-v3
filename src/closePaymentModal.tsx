@@ -1,12 +1,23 @@
 export default function closePaymentModal() {
     // Remove iFrame
-    const iFrameContainer = document.querySelectorAll('iframe#budpay-iframe-container');
+    const iFrameContainer = document.querySelectorAll('iframe#budpay-payment-iframe-container');
 
     if (iFrameContainer) {
         iFrameContainer.forEach((iframe) => {
             iframe.remove();
         });
     }
+
+
+    // Remove iFrame
+    const iFrameAccessContainer = document.querySelectorAll('iframe#budpay-access-iframe-container');
+
+    if (iFrameAccessContainer) {
+        iFrameAccessContainer.forEach((iframe) => {
+            iframe.remove();
+        });
+    }
+
 
     // Remove SVG Loader
     let svgLoaderDivContainer = document.querySelectorAll("#budpay-svg-loader-container");
