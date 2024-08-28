@@ -32,7 +32,7 @@ export default function useBudPayAccessCode(config: BudPayAccessCodeConfig) {
     // Create iFrame Element, append to body, and return iFrame Element
     const createIFrame = () => {
         let iframeDiv = document.createElement("iframe");
-        iframeDiv.setAttribute("src", `${libraryConfig.checkoutUrl}/pay/api?reference=${config.reference}`);
+        iframeDiv.setAttribute("src", `${libraryConfig.checkoutUrl}/pay/api?reference=${config.reference}&budpay_library_integrated`);
         iframeDiv.setAttribute("id", "budpay-access-iframe-container");
         iframeDiv.setAttribute("style", "position:fixed;top:0;left:0;z-index:99999999999999;border:none;opacity:0;pointer-events:none;width:100%;height:100%;");
         iframeDiv.setAttribute("allowTransparency", "true");

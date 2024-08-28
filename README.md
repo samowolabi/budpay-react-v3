@@ -13,7 +13,7 @@ To install the BudPay React Library, use npm or yarn:
 ### Using npm
 
 ```bash
-npm install budpay-react-v3
+npm install @budpay/react
 ```
 
 
@@ -45,7 +45,7 @@ The `BudPayButton` component is a ready-to-use button that triggers the BudPay p
 
 ```javascript copy
 import React from 'react';
-import { BudPayButton } from 'budpay-react-v3';
+import { BudPayButton } from '@budpay/react';
 
 const config = {
     api_key: "pk_test_1234567890",
@@ -110,7 +110,7 @@ The `useBudPayPayment` hook allows you to initiate a payment modal using your Bu
 
 ```javascript copy
 import React from 'react';
-import { useBudPayPayment } from 'budpay-react-v3';
+import { useBudPayPayment } from '@budpay/react';
 
 const initiateBudPayPayment = useBudPayPayment({
     api_key: "pk_test_1234567890",
@@ -196,7 +196,7 @@ curl https://api.budpay.com/api/v2/transaction/initialize \
 
 ```javascript copy
 import React from 'react';
-import { useBudPayAccessCode } from 'budpay-react-v3';
+import { useBudPayAccessCode } from '@budpay/react';
 
 const MyComponent = () => {
     const initiatePayment = useBudPayAccessCode({
@@ -237,7 +237,7 @@ Automatically close the payment modal after 20 seconds:
 
 ```javascript copy
 import React, { useEffect } from 'react';
-import { closePaymentModal } from 'budpay-react-v3';
+import { closePaymentModal } from '@budpay/react';
 
 const MyComponent = () => {
     useEffect(() => {
@@ -259,7 +259,7 @@ export default MyComponent;
 
 ```javascript copy
 import React from 'react';
-import { useBudPayPayment, closePaymentModal } from 'budpay-react-v3';
+import { useBudPayPayment, closePaymentModal } from '@budpay/react';
 
 const MyComponent = () => {
     const initiatePayment = useBudPayPayment({
